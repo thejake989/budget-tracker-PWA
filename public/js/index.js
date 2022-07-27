@@ -1,5 +1,4 @@
-/* global saveRecord, Chart */
-
+// Register service worker
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("/service-worker.js").then((reg) => {
@@ -32,9 +31,9 @@ function createTransactionForm() {
     errorEl.textContent = message;
   };
 
-  // return false if invalid and display validation message
+  // Error message
   const validate = () => {
-    // validate form
+    // Validate form
     if (nameEl.value === "" || amountEl.value === "") {
       showError("Missing Information");
       return false;
@@ -43,7 +42,7 @@ function createTransactionForm() {
     return true;
   };
 
-  // return transaction object from form input
+  // Returns the transaction object from the input
   const transaction = () => {
     return {
       name: nameEl.value,
@@ -52,7 +51,7 @@ function createTransactionForm() {
     };
   };
 
-  // clear form inputs
+  // Clear info
   const clear = () => {
     nameEl.value = "";
     amountEl.value = "";
@@ -98,23 +97,23 @@ function sendTransaction(isAdding) {
     return;
   }
 
-  // create record
+  // Creates records
   const transaction = transactionForm.transaction();
 
-  // if subtracting funds, convert amount to negative number
+  // Converts amount to negative number if removing funds
   if (!isAdding) {
     transaction.value *= -1;
   }
 
-  // add to beginning of current array of data
+  // Adds to beginning of current array of data
   transactions.unshift(transaction);
 
-  // re-run logic to populate ui with new record
+  // Re-run logic to populate ui with new record
   populateChart();
   populateTable();
   populateTotal();
 
-  // also send to server
+  // Transaction API
   transactionApi
     .create(transaction)
     .then((data) => {
@@ -125,7 +124,6 @@ function sendTransaction(isAdding) {
       }
     })
     .catch(() => {
-      // fetch failed, so save in indexed db
       saveRecord(transaction);
       transactionForm.clear();
     });
@@ -138,7 +136,6 @@ function renderTransactionsChart() {
 }
 
 function populateTotal() {
-  // reduce transaction amounts to a single total value
   const total = transactions.reduce((total, t) => {
     return total + parseInt(t.value);
   }, 0);
@@ -152,7 +149,7 @@ function populateTable() {
   tbody.innerHTML = "";
 
   transactions.forEach((transaction) => {
-    // create and populate a table row
+    // Create and populate table
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${transaction.name}</td>
@@ -164,23 +161,23 @@ function populateTable() {
 }
 
 function populateChart() {
-  // copy array and reverse it
+  // copies the array and then reverses it
   const reversed = transactions.slice().reverse();
   let sum = 0;
 
-  // create date labels for chart
+  // Adds the date to the graph
   const labels = reversed.map((t) => {
     const date = new Date(t.date);
     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
   });
 
-  // create incremental values for chart
+  // Create incremental values for the graph
   const data = reversed.map((t) => {
     sum += parseInt(t.value);
     return sum;
   });
 
-  // remove old chart if it exists
+  // Removes the old graph if it still exists
   if (myChart) {
     myChart.destroy();
   }
