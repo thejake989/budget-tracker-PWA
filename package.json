@@ -1,0 +1,30 @@
+{
+  "name": "budget-app5000",
+  "version": "1.0.0",
+  "description": "An app to help you see where your money is going",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "watch": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thejake989/budget-tracker5000"
+  },
+  "author": "Jacob Gibson <thejakethree989@gmail.com> (https://github.com/thejake989)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thejake989/budget-tracker5000"
+  },
+  "homepage": "https://github.com/thejake989/budget-tracker5000",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "mongoose": "^5.5.15",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
