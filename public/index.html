@@ -5,19 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="theme-color" content="#317EFB" />
-
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <link rel="stylesheet" href="./css/styles.css" />
-
     <link rel="manifest" href="./manifest.json" />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
 
     <title>Budget Tracker</title>
   </head>
   <body>
-    <div class="wrapper">
+    <div class="bud-wrapper wrapper">
       <div class="total">
         <div class="total">Your total is: $<span id="total">0</span></div>
       </div>
@@ -31,9 +29,11 @@
           placeholder="Transaction amount"
         />
         <button id="add-btn">
-          <i class="fa fa-plus buttons"></i> Add Funds
+          <i class="fa fa-plus-square buttons"></i> Add Funds
         </button>
-        <button id="sub-btn"><i class="fa fa-minus"></i> Subtract Funds</button>
+        <button id="sub-btn">
+          <i class="fa fa-minus-square"></i> Remove Funds
+        </button>
         <p class="error"></p>
       </div>
 
@@ -41,7 +41,7 @@
         <table>
           <thead>
             <th>Transaction</th>
-            <th>Amount</th>
+            <th>Amount $</th>
           </thead>
           <tbody id="tbody"></tbody>
         </table>
@@ -51,7 +51,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script src="./js/db.js"></script>
-    <script src="./js/index.js"></script>
+    <script src="./assets/js/db.js"></script>
+    <script src="./assets/js/index.js"></script>
   </body>
 </html>
