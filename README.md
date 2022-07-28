@@ -17,7 +17,8 @@ You will also need to signup for a free account at [mongodb.com](https://www.mon
 
 ## Usage
 
-To start the server, run `npm start` or `nodemon start` if Nodemon is installed. <br>To access the app after starting the server, go to http://localhost:3001 in your browser.
+To start the server, run `npm start` or `nodemon start` if Nodemon is installed. <br>To access the app after starting the server, go to http://localhost:3001 in your browser. <br>
+Here is the Link of the deployed application! [Budget Tracker 5000](https://electronic-black-shrimp.herokuapp.com/)
 
 ## Example Usage
 
